@@ -32,13 +32,16 @@ func NewGRPC(port string, pserver api.PersonServiceServer) *GRPC {
 func (g *GRPC) Start() {
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", g.port))
+	log.Println("it's going to start the grpc up")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-
+	log.Println("creating the grpc server")
 	s := grpc.NewServer()
-	api.RegisterPersonServiceServer(s, g.pserver)
 
+	log.Println("registering the grpc server")
+	api.RegisterPersonServiceServer(s, g.pserver)
+	log.Println("the service has been registered into the grpc server")
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {

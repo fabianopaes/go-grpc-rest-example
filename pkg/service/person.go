@@ -9,10 +9,10 @@ import (
 )
 
 type Person struct {
-	repo *repository.Person
+	repo repository.Person
 }
 
-func NewPerson(repo *repository.Person) *Person {
+func NewPerson(repo repository.Person) *Person {
 	return &Person{
 		repo: repo,
 	}

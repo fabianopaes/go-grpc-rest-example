@@ -28,6 +28,6 @@ func getPersonRepository() *memory.PersonRepository {
 	return &memory.PersonRepository{}
 }
 
-func getPersonServer(repo *repository.Person) api.PersonServiceServer {
+func getPersonServer(repo repository.Person) api.PersonServiceServer {
 	return service.NewPerson(repo)
 }
