@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package api;
+
+// import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// option java_multiple_files = true;
+// option java_outer_classname = "VersionProto";
+// option java_package = "com.pixeon.version";
+
+message Person {
+    string id = 1;
+    string name = 2;
+    google.protobuf.Timestamp createdAt=3;
+}
+
+message GetPersonRequest{
+    string id = 1;
+    string name = 2;
+}
+
+// message GetPersonResponse{
+
+// }
+
+// message ListPersonResponse {
+//     repeated Person persons = 1;
+// }
+
+
+service PersonService {
+    rpc Get(GetPersonRequest) returns (Person) {} 
+}
+  
