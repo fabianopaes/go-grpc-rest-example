@@ -9,17 +9,21 @@ import (
 )
 
 func main() {
-	grpc := GetGRPCServerReady()
+	personRepo := getPersonRepository()
+	personGRPC := getPersonServer(personRepo)
+	grpc := GetGRPCServerReady(personGRPC)
 	grpc.Start()
 
-	rest := GetRestServerReady()
-	rest.Start()
+	// rest := GetRestServerReady()
+	// rest.Start()
 }
 
-func GetGRPCServerReady() server.Server {
-	return &server.GRPC{}
+//GetGRPCServerReady start the grpc server
+func GetGRPCServerReady(pss api.PersonServiceServer) server.Server {
+	return server.NewGRPC("5000", pss)
 }
 
+//GetRestServerReady gets the http rest server running
 func GetRestServerReady() server.Server {
 	return &server.Rest{}
 }
