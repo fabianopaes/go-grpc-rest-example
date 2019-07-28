@@ -58,6 +58,7 @@ func NewPerson() *PersonRepository {
 }
 
 func (pr *PersonRepository) Get(ctx context.Context, ID string) (*api.Person, error) {
+	fmt.Printf("looking for person by id: %s", ID)
 	per, ok := pr.byID[ID]
 	if ok != true {
 		return nil, fmt.Errorf("person not found")

@@ -43,7 +43,7 @@ func GetGRPCServerReady(pss api.PersonServiceServer) *server.GRPC {
 func GetRestServerReady() *server.Rest {
 	//FIXME should read the port value from env var
 	client := getPersonClient()
-	return server.NewRest("5001", &client)
+	return server.NewRest("5001", client)
 }
 
 func getPersonRepository() *memory.PersonRepository {
@@ -60,9 +60,5 @@ func getPersonClient() api.PersonServiceClient {
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	defer func() {
-		log.Println("it's going to close the connection to the grpc servr")
-		conn.Close()
-	}()
 	return api.NewPersonServiceClient(conn)
 }

@@ -18,7 +18,7 @@ type Rest struct {
 }
 
 //NewRest is the constructor of type Server
-func NewRest(port string, client *api.PersonServiceClient) *Rest {
+func NewRest(port string, client api.PersonServiceClient) *Rest {
 	log.Println("creating the http server")
 	return &Rest{
 		server: &http.Server{
